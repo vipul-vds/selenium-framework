@@ -1,0 +1,10 @@
+# Ignore build output directory
+build
+bin
+target/
+.idea/
+*.iml
+*.log
+*.class
+logs/
+screenshots/
