@@ -8,3 +8,4 @@ target/
 *.class
 logs/
 screenshots/
+test-output/
