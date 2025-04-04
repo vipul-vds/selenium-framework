@@ -11,3 +11,27 @@
         </classes>
     </test>
 </suite>
+
+
+
+<!-- GitHub Project Url: https://github.com/vipul-vds/selenium-framework -->
+
+<!-- http://127.0.0.1:63011/?code=3c1bf1a79408a3a598e0&state=243ee9b571064e9abe29842428388f78
+
+https://github.com/vipul-vds/selenium-framework.git
+
+git add .
+git commit -m "First Commit"
+git status
+git remote add origin https://github.com/vipul-vds/selenium-framework.git
+git remote -v
+git branch -M main
+git push -u origin main
+
+
+Future updates (Pushing new changes)
+git add .
+git commit -m "updated code"
+git push origin main
+
+ -->

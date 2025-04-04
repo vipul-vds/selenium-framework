@@ -29,7 +29,7 @@ public class LoginTest extends BaseTest {
 	public void validLoginTest() {
 		loginPage.login("validUser", "validPassword");
 		test.pass("Login Test");
-		Assert.assertEquals("1", "2");
+		//Assert.assertEquals("1", "2");
 		Assert.assertTrue(loginPage.isLogoutDisplayed(), "Login failed");
 		test.pass("Login test passed");
 		

@@ -2,20 +2,20 @@
 <testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-04-04T17:07:48 IST" name="DemoBlaze Suite" finished-at="2025-04-04T17:07:59 IST" duration-ms="10483">
+  <suite started-at="2025-04-04T18:38:36 IST" name="DemoBlaze Suite" finished-at="2025-04-04T18:38:42 IST" duration-ms="5552">
     <groups>
     </groups>
-    <test started-at="2025-04-04T17:07:48 IST" name="LoginTest" finished-at="2025-04-04T17:07:59 IST" duration-ms="10483">
+    <test started-at="2025-04-04T18:38:36 IST" name="LoginTest" finished-at="2025-04-04T18:38:42 IST" duration-ms="5552">
       <class name="com.demoblaze.tests.LoginTest">
-        <test-method is-config="true" signature="setup()[pri:0, instance:com.demoblaze.tests.LoginTest@878452d]" started-at="2025-04-04T17:07:15 IST" name="setup" finished-at="2025-04-04T17:07:48 IST" duration-ms="32809" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.demoblaze.tests.LoginTest@878452d]" started-at="2025-04-04T18:37:52 IST" name="setup" finished-at="2025-04-04T18:38:36 IST" duration-ms="43471" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method is-config="true" signature="initPages()[pri:0, instance:com.demoblaze.tests.LoginTest@878452d]" started-at="2025-04-04T17:07:48 IST" name="initPages" finished-at="2025-04-04T17:07:48 IST" duration-ms="0" status="PASS">
+        <test-method is-config="true" signature="initPages()[pri:0, instance:com.demoblaze.tests.LoginTest@878452d]" started-at="2025-04-04T18:38:36 IST" name="initPages" finished-at="2025-04-04T18:38:36 IST" duration-ms="10" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initPages -->
-        <test-method is-config="true" signature="setupExtentReportTest(org.testng.ITestResult)[pri:0, instance:com.demoblaze.tests.LoginTest@878452d]" started-at="2025-04-04T17:07:49 IST" name="setupExtentReportTest" finished-at="2025-04-04T17:07:49 IST" duration-ms="99" status="PASS">
+        <test-method is-config="true" signature="setupExtentReportTest(org.testng.ITestResult)[pri:0, instance:com.demoblaze.tests.LoginTest@878452d]" started-at="2025-04-04T18:38:36 IST" name="setupExtentReportTest" finished-at="2025-04-04T18:38:36 IST" duration-ms="52" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -26,11 +26,11 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setupExtentReportTest -->
-        <test-method is-config="true" signature="initPages1()[pri:0, instance:com.demoblaze.tests.LoginTest@878452d]" started-at="2025-04-04T17:07:49 IST" name="initPages1" finished-at="2025-04-04T17:07:49 IST" duration-ms="0" status="PASS">
+        <test-method is-config="true" signature="initPages1()[pri:0, instance:com.demoblaze.tests.LoginTest@878452d]" started-at="2025-04-04T18:38:36 IST" name="initPages1" finished-at="2025-04-04T18:38:36 IST" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initPages1 -->
-        <test-method signature="validLoginTest()[pri:0, instance:com.demoblaze.tests.LoginTest@878452d]" started-at="2025-04-04T17:07:49 IST" name="validLoginTest" finished-at="2025-04-04T17:07:55 IST" duration-ms="6329" status="FAIL">
+        <test-method signature="validLoginTest()[pri:0, instance:com.demoblaze.tests.LoginTest@878452d]" started-at="2025-04-04T18:38:36 IST" name="validLoginTest" finished-at="2025-04-04T18:38:39 IST" duration-ms="2477" status="FAIL">
           <exception class="java.lang.AssertionError">
             <message>
               <![CDATA[expected [2] but found [1]]]>
@@ -78,7 +78,7 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- validLoginTest -->
-        <test-method is-config="true" signature="screenshotCapture(org.testng.ITestResult)[pri:0, instance:com.demoblaze.tests.LoginTest@878452d]" started-at="2025-04-04T17:07:55 IST" name="screenshotCapture" finished-at="2025-04-04T17:07:59 IST" duration-ms="3561" status="PASS">
+        <test-method is-config="true" signature="screenshotCapture(org.testng.ITestResult)[pri:0, instance:com.demoblaze.tests.LoginTest@878452d]" started-at="2025-04-04T18:38:39 IST" name="screenshotCapture" finished-at="2025-04-04T18:38:42 IST" duration-ms="2880" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -89,7 +89,7 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- screenshotCapture -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.demoblaze.tests.LoginTest@878452d]" started-at="2025-04-04T17:07:59 IST" name="tearDown" finished-at="2025-04-04T17:08:07 IST" duration-ms="8010" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.demoblaze.tests.LoginTest@878452d]" started-at="2025-04-04T18:38:42 IST" name="tearDown" finished-at="2025-04-04T18:38:50 IST" duration-ms="7641" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
