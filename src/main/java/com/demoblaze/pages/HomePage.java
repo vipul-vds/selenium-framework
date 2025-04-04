@@ -35,6 +35,7 @@ public class HomePage {
 			test.info("Product is clicked successfully " + prdName);
 			logger.info("Product is selected successfully " + prdName);
 		} catch (Exception e) {
+			driver.get("https://www.demoblaze.com/");
 			e.printStackTrace();
 		}
 	}

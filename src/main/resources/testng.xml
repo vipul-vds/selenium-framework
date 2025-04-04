@@ -16,9 +16,17 @@
 
 <!-- GitHub Project Url: https://github.com/vipul-vds/selenium-framework -->
 
+
 <!-- http://127.0.0.1:63011/?code=3c1bf1a79408a3a598e0&state=243ee9b571064e9abe29842428388f78
 
+PAT: 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
+
+git clone "https://vipul-vds@github.com/vipul-vds/selenium-framework.git"
+
 https://github.com/vipul-vds/selenium-framework.git
+
+vds.vipul@gmail.com
+vipul-vds
 
 git add .
 git commit -m "First Commit"
@@ -33,5 +41,22 @@ Future updates (Pushing new changes)
 git add .
 git commit -m "updated code"
 git push origin main
+
+Steps to resolve merge issues.
+1. git pull origin main (It will show error message for merge conflict files)
+2. Now open conflict file in an editor (It will show 
+		<<<<<<<HEAD
+		 Statements
+		 
+		===========
+		statements
+		
+		>>>>>>>> origin main
+3. Manually resolve the conflict (Decide which version to keep or merge both changes.)
+4. Add the resolved file
+	git add src/main/java/pages/HomePage.java
+5. Commit and Push
+	git commit -m "Commit Message"
+	git push origin main
 
  -->

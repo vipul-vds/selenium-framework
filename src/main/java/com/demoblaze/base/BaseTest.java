@@ -14,6 +14,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -58,9 +59,12 @@ public class BaseTest {
 	}
 
 	@BeforeMethod
-	public void setupExtentReportTest(ITestResult context) {
-		System.out.println("context.getName() : " + context.getMethod().getMethodName());
-		test = extentReports.createTest(context.getMethod().getMethodName());
+	//public void setupExtentReportTest(ITestResult context) {
+	public void setupExtentReportTest(ITestContext context) {
+		System.out.println("context.getName() : " + context.getName());
+		test = extentReports.createTest(context.getName());
+		//System.out.println("context.getName() : " + context.getMethod().getMethodName());
+		//test = extentReports.createTest(context.getMethod().getMethodName());
 		System.out.println("extent Test object is created");
 	}
 
