@@ -73,7 +73,7 @@
 
 	<build>
 		<plugins>
-			<!-- Surefire plugin to run tests -->
+			<!-- Surefire plugin to run tests thorugh command prompt using mvn clean test and it will pick test cases name from testng.xml file-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
@@ -96,23 +96,6 @@
 					</properties>
 				</configuration>
 			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.1</version>
-				<configuration>
-					<source>17</source> <!-- Set the source to 17 -->
-					<target>17</target> <!-- Set the target to 17 -->
-					<compilerArgs>
-						<arg>--add-exports</arg>
-						<arg>jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
-						<arg>--add-opens</arg>
-						<arg>jdk.compiler/com.sun.tools.javac=ALL-UNNAMED</arg>
-					</compilerArgs>
-				</configuration>
-			</plugin>
-
 		</plugins>
 	</build>
 </project>

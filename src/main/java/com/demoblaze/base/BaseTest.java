@@ -2,6 +2,7 @@ package com.demoblaze.base;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -26,6 +27,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.ITestAnnotation;
+import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -63,9 +65,11 @@ public class BaseTest {
 
 	@BeforeMethod
 //	public void setupExtentReportTest(ITestResult context) {
-	public void setupExtentReportTest(ITestContext context) {
-		System.out.println("context.getName() : " + context.getName());
-		test = extentReports.createTest(context.getName());
+	public void setupExtentReportTest(Method context) {
+		String description = context.getAnnotation(Test.class).description();
+		String testName = (description.isEmpty()) ? context.getName() : description;
+		System.out.println("context.getName() : " + testName);
+		test = extentReports.createTest(testName);
 //		System.out.println("context.getName() : " + context.getMethod().getMethodName());
 //		test = extentReports.createTest(context.getMethod().getMethodName());
 		System.out.println("extent Test object is created");

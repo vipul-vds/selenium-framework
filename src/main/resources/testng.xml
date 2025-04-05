@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="DemoBlaze Suite">
+	<!-- <listeners>
+		<listener class-name="com\demoblaze\utils\CustomTestNameListener.java"/>
+	</listeners>
+	 -->
     <!-- <test name="LoginTest">
         <classes>
             <class name="com.demoblaze.tests.LoginTest"/>
@@ -10,6 +14,7 @@
             <class name="com.demoblaze.tests.CheckoutTest"/>
         </classes>
     </test> -->
+    
     <test name="Login Test">
         <classes>
            	<class name="com.demoblaze.tests.LoginTest"/>
@@ -40,7 +45,6 @@
 
 
 <!-- GitHub Project Url: https://github.com/vipul-vds/selenium-framework -->
-
 <!-- 
 git clone "https://vipul-vds@github.com/vipul-vds/selenium-framework.git"
 

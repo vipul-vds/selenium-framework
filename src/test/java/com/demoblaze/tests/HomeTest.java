@@ -3,6 +3,7 @@ package com.demoblaze.tests;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.demoblaze.base.BaseTest;
@@ -23,7 +24,7 @@ public class HomeTest extends BaseTest {
 		homePage = new HomePage(driver, test);
 	}
 	
-	@Test(priority=0)
+	@Test(description = "Select Product")
 	public void selectProduct() {
 		String product = "Samsung galaxy s6";
 		homePage.selectProduct(product);
