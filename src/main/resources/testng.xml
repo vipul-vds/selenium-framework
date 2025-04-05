@@ -1,15 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="DemoBlaze Suite">
-    <test name="LoginTest">
+    <!-- <test name="LoginTest">
         <classes>
             <class name="com.demoblaze.tests.LoginTest"/>
-            <!-- <class name="com.demoblaze.tests.HomeTest"/>
+            <class name="com.demoblaze.tests.HomeTest"/>
             <class name="com.demoblaze.tests.ProductTest"/>
             <class name="com.demoblaze.tests.CartTest"/>
-            <class name="com.demoblaze.tests.CheckoutTest"/> -->
+            <class name="com.demoblaze.tests.CheckoutTest"/>
+        </classes>
+    </test> -->
+    <test name="Login Test">
+        <classes>
+           	<class name="com.demoblaze.tests.LoginTest"/>
         </classes>
     </test>
+    <test name="Home Test">
+        <classes>
+           	<class name="com.demoblaze.tests.HomeTest"/>
+        </classes>
+    </test>
+    <!-- <test name="Product Test">
+        <classes>
+           	<class name="com.demoblaze.tests.ProductTest"/>
+        </classes>
+    </test> -->
+    <!-- <test name="Cart Test">
+        <classes>
+           	<class name="com.demoblaze.tests.CartTest"/>
+        </classes>
+    </test> -->
+    <!-- <test name="Checkout Test">
+        <classes>
+           	<class name="com.demoblaze.tests.CheckoutTest"/>
+        </classes>
+    </test> -->
 </suite>
 
 

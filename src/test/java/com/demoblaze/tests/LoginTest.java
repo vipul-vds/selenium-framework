@@ -25,7 +25,7 @@ public class LoginTest extends BaseTest {
 		loginPage = new LoginPage(driver, test);
 	}
 	
-	@Test(priority=0)
+	@Test(description="Valid Login with user validPassword", priority=0)
 	public void validLoginTest() {
 		loginPage.login("validUser", "validPassword");
 		test.pass("Login Test");
@@ -46,7 +46,7 @@ public class LoginTest extends BaseTest {
 		loginPage.logout("validUser");
 	}
 
-	//@Test(priority=2)
+	@Test(description="Invalid Login with user invalidPassword", priority=2)
 	public void invalidLoginTest() {
 		loginPage.login("invalidUser", "invalidPassword");
 		loginPage.clickOKButton();

@@ -9,10 +9,18 @@
 <table>
 <tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Retried</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
 <tr><th colspan="8">DemoBlaze Suite</th></tr>
-<tr><td><a href="#t0">LoginTest</a></td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">75,412</td><td></td><td></td></tr>
+<tr><td><a href="#t0">Login Test</a></td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num attn">1</td><td class="num">22,704</td><td></td><td></td></tr>
+<tr class="stripe"><td><a href="#t1">Home Test</a></td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">3,947</td><td></td><td></td></tr>
+<tr><th>Total</th><th class="num">2</th><th class="num">0</th><th class="num">0</th><th class="num attn">1</th><th class="num">26,651</th><th colspan="2"></th></tr>
 </table>
-<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">DemoBlaze Suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">LoginTest &#8212; passed</th></tr><tr class="passedeven"><td rowspan="1">com.demoblaze.tests.LoginTest</td><td><a href="#m0">validLoginTest</a></td><td rowspan="1">1743786692780</td><td rowspan="1">75075</td></tr></tbody>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">DemoBlaze Suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Login Test &#8212; failed</th></tr><tr class="failedeven"><td rowspan="1">com.demoblaze.tests.LoginTest</td><td><a href="#m0">invalidLoginTest</a></td><td rowspan="1">1743825486548</td><td rowspan="1">12090</td></tr><tr><th colspan="4">Login Test &#8212; passed</th></tr><tr class="passedeven"><td rowspan="1">com.demoblaze.tests.LoginTest</td><td><a href="#m1">validLoginTest</a></td><td rowspan="1">1743825478625</td><td rowspan="1">7841</td></tr></tbody>
+<tbody id="t1"><tr><th colspan="4">Home Test &#8212; passed</th></tr><tr class="passedeven"><td rowspan="1">com.demoblaze.tests.HomeTest</td><td><a href="#m2">selectProduct</a></td><td rowspan="1">1743825501289</td><td rowspan="1">3916</td></tr></tbody>
 </table>
-<h2>LoginTest</h2><h3 id="m0">com.demoblaze.tests.LoginTest#validLoginTest</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h2>Login Test</h2><h3 id="m0">com.demoblaze.tests.LoginTest#invalidLoginTest</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.AssertionError: Login should fail expected [false] but found [true]
+	at com.demoblaze.tests.LoginTest.invalidLoginTest(LoginTest.java:53)
+	at java.util.ArrayList.forEach(Unknown Source)
+... Removed 30 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m1">com.demoblaze.tests.LoginTest#validLoginTest</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h2>Home Test</h2><h3 id="m2">com.demoblaze.tests.HomeTest#selectProduct</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 </body>
 </html>
