@@ -47,7 +47,7 @@ pipeline {
         stage('Zip Report') {
             steps {
                 powershell """
-           			Compress-Archive -Path '${env.LATEST_REPORT_DIR}' -DestinationPath 'ArchivedReport.zip' -Force
+           			Compress-Archive -Path \\"${env.LATEST_REPORT_DIR}\\" -DestinationPath \\"ArchivedReport.zip\\" -Force
         		"""
             }
         }
