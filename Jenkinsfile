@@ -27,10 +27,10 @@ pipeline {
             steps {
                 script {
                     def latestDir = bat(
-						script: "for /f %%i in ('dir /b /ad /o-d %REPORT_BASE_DIR%') do (set latest=%%i & goto :done)\n:done\n echo %REPORT_BASE_DIR%\\%latest%",
-						returnStdout: true
+    					script: 'for /f "delims=" %%i in (\'dir /b /ad /o-d reports\') do @echo reports\\%%i & goto :done\n:done',
+    					returnStdout: true
 						).trim()
-                    env.LATEST_REPORT_DIR = latestDir
+					env.LATEST_REPORT_DIR = latestDir
                 }
             }
         }
@@ -46,7 +46,9 @@ pipeline {
 
         stage('Zip Report') {
             steps {
-                bat "powershell Compress-Archive -Path ${env.LATEST_REPORT_DIR}\\* -DestinationPath ${env.LATEST_REPORT_DIR}\\ExtentReport.zip"
+                powershell """
+           			Compress-Archive -Path '${env.LATEST_REPORT_DIR}' -DestinationPath 'ArchivedReport.zip' -Force
+        		"""
             }
         }
     }
