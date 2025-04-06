@@ -47,14 +47,14 @@ pipeline {
             }
         }
 
-        stage('Zip Report') {
-            steps {
-                powershell """
-           			Compress-Archive -Path \\"${env.LATEST_REPORT_DIR}\\" -DestinationPath \\"ArchivedReport.zip\\" -Force
-        		"""
-            }
-        }
-    }
+//        stage('Zip Report') {
+//            steps {
+//                powershell """
+//           			Compress-Archive -Path \\"${env.LATEST_REPORT_DIR}\\" -DestinationPath \\"ArchivedReport.zip\\" -Force
+//       		"""
+//            }
+//        }
+//    }
 
     post {
         always {
@@ -65,7 +65,8 @@ pipeline {
                          <p>Build Number: ${env.BUILD_NUMBER}</p>
                          <p>Report: <a href="${env.BUILD_URL}artifact/${env.LATEST_REPORT_DIR}index.html">Click here</a></p>""",
                 mimeType: 'text/html',
-                attachmentsPattern: "${env.LATEST_REPORT_DIR}ExtentReport.zip",
+//                attachmentsPattern: "${env.LATEST_REPORT_DIR}\\ExtentReport.zip",
+                attachmentsPattern: "${env.LATEST_REPORT_DIR}\\testReport.xml",
                 to: 'vipulpmalde@gmail.com'
             )
         }
