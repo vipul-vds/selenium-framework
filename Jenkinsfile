@@ -27,10 +27,11 @@ pipeline {
             steps {
                 script {
                     def latestDir = bat(
-    					script: 'for /f "delims=" %%i in (\'dir /b /ad /o-d reports\') do @echo reports\\%%i & goto :done\n:done',
-    					returnStdout: true
-						).trim()
-					env.LATEST_REPORT_DIR = latestDir
+                		script: 'for /f "delims=" %%i in (\'dir /b /ad /o-d reports\') do @echo reports\\%%i & goto :done\n:done',
+                		returnStdout: true
+            			).trim()
+            		echo "Latest Report Directory: ${latestDir}"
+            		env.LATEST_REPORT_DIR = latestDir
                 }
             }
         }
@@ -38,8 +39,9 @@ pipeline {
         stage('Archive Report') {
             steps {
                 script {
-                    def reportPath = "${env.LATEST_REPORT_DIR}\\testResult.xml"
-                    archiveArtifacts artifacts: reportPath, allowEmptyArchive: true
+                    def reportFile = "${env.LATEST_REPORT_DIR}\\testResult.xml"
+            		echo "Archiving file: ${reportFile}"
+            		archiveArtifacts artifacts: reportFile, fingerprint: true
                 }
             }
         }
