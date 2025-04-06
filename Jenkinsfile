@@ -19,17 +19,17 @@ pipeline {
 
         stage('Build and Test') {
             steps {
-                sh 'mvn clean test'
+                bat 'mvn clean test'
             }
         }
 
         stage('Find Latest Report') {
             steps {
                 script {
-                    def latestDir = sh(
-                        script: "ls -dt ${REPORT_BASE_DIR}/*/ | head -1",
-                        returnStdout: true
-                    ).trim()
+                    def latestDir = bat(
+						script: "for /f %%i in ('dir /b /ad /o-d %REPORT_BASE_DIR%') do (set latest=%%i & goto :done)\n:done\n echo %REPORT_BASE_DIR%\\%latest%",
+						returnStdout: true
+						).trim()
                     env.LATEST_REPORT_DIR = latestDir
                 }
             }
@@ -46,7 +46,7 @@ pipeline {
 
         stage('Zip Report') {
             steps {
-                sh "zip -r ${env.LATEST_REPORT_DIR}ExtentReport.zip ${env.LATEST_REPORT_DIR}"
+                bat "powershell Compress-Archive -Path ${env.LATEST_REPORT_DIR}\\* -DestinationPath ${env.LATEST_REPORT_DIR}\\ExtentReport.zip"
             }
         }
     }
@@ -61,8 +61,7 @@ pipeline {
                          <p>Report: <a href="${env.BUILD_URL}artifact/${env.LATEST_REPORT_DIR}index.html">Click here</a></p>""",
                 mimeType: 'text/html',
                 attachmentsPattern: "${env.LATEST_REPORT_DIR}ExtentReport.zip",
-                to: 'vipulpmalde@gmail.com',
-                recipientProviders: [[$class: 'DevelopersRecipientProvider']]
+                to: 'vipulpmalde@gmail.com'
             )
         }
     }
