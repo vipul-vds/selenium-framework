@@ -38,7 +38,7 @@ pipeline {
         stage('Archive Report') {
             steps {
                 script {
-                    def reportPath = "${env.LATEST_REPORT_DIR}testResult.xml"
+                    def reportPath = "${env.LATEST_REPORT_DIR}\\testResult.xml"
                     archiveArtifacts artifacts: reportPath, allowEmptyArchive: true
                 }
             }
