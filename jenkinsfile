@@ -46,7 +46,7 @@ pipeline {
         always {
             junit 'target/surefire-reports/*.xml'
             emailext {
-				to: ‘vds.vipul@gmail.com’,
+				to: "vds.vipul@gmail.com",
 				subject: “Build: ${currentBuild.fullDisplayName} - ${currentBuildResult}”,
 				body: “Build ${env.BUILD_URL} completed with status: ${currentBuild.result}”, 
 				attachmentsPattern: “${env.REPORT_PATH}/indexhtml”
