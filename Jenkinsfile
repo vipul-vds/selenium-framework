@@ -2,57 +2,68 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven 3.8.1' // Match the tool name in Jenkins
-        jdk 'JDK11'         // Match the tool name in Jenkins
+        maven 'Maven 3'
+        jdk 'JDK 11'
     }
+
+    environment {
+        REPORT_BASE_DIR = "reports"
+    }
+
     stages {
-        stage('Checkout Code') {
+        stage('Checkout') {
             steps {
-                git 'https://github.com/your-username/your-repo-name.git'
+                git 'https://github.com/your-username/your-repo.git'
             }
         }
-        stage('Build & Test') {
+
+        stage('Build and Test') {
             steps {
                 sh 'mvn clean test'
             }
         }
-        stage('Find Latest Extent Report Folder') {
+
+        stage('Find Latest Report') {
             steps {
                 script {
-                    def reportBaseDir = "reports"
-                    def folders = sh(
-                        script: "ls -td ${reportBaseDir}/*/ | head -1",
+                    def latestDir = sh(
+                        script: "ls -dt ${REPORT_BASE_DIR}/*/ | head -1",
                         returnStdout: true
                     ).trim()
-                    env.REPORT_PATH = folders
-                    echo "Latest Report Folder: ${env.REPORT_PATH}"
+                    env.LATEST_REPORT_DIR = latestDir
                 }
             }
         }
-        stage('Publish Extent Report') {
+
+        stage('Archive Report') {
             steps {
-                publishHTML([
-                    reportDir: "${env.REPORT_PATH}",
-                    reportFiles: 'index.html',
-                    reportName: 'Extent Report',
-                    keepAll: true,
-                    alwaysLinkToLastBuild: true,
-                    allowMissing: false
-                ])
+                script {
+                    def reportPath = "${env.LATEST_REPORT_DIR}testResult.xml"
+                    archiveArtifacts artifacts: reportPath, allowEmptyArchive: true
+                }
+            }
+        }
+
+        stage('Zip Report') {
+            steps {
+                sh "zip -r ${env.LATEST_REPORT_DIR}ExtentReport.zip ${env.LATEST_REPORT_DIR}"
             }
         }
     }
+
     post {
         always {
-            junit 'target/surefire-reports/*.xml'
-            emailext {
-				to: "vds.vipul@gmail.com",
-				subject: “Build: ${currentBuild.fullDisplayName} - ${currentBuildResult}”,
-				body: “Build ${env.BUILD_URL} completed with status: ${currentBuild.result}”, 
-				attachmentsPattern: “${env.REPORT_PATH}/indexhtml”
-			}
+            emailext (
+                subject: "Job '${env.JOB_NAME}' - Build #${env.BUILD_NUMBER} - ${currentBuild.currentResult}",
+                body: """<p>Build Status: ${currentBuild.currentResult}</p>
+                         <p>Project: ${env.JOB_NAME}</p>
+                         <p>Build Number: ${env.BUILD_NUMBER}</p>
+                         <p>Report: <a href="${env.BUILD_URL}artifact/${env.LATEST_REPORT_DIR}index.html">Click here</a></p>""",
+                mimeType: 'text/html',
+                attachmentsPattern: "${env.LATEST_REPORT_DIR}ExtentReport.zip",
+                to: 'vipulpmalde@gmail.com',
+                recipientProviders: [[$class: 'DevelopersRecipientProvider']]
+            )
         }
     }
 }
-
-
