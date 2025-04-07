@@ -77,23 +77,10 @@ pipeline {
             echo "Pipeline finished."
 
             emailext(
+                subject: "Test Mail from Jenkins",
+                body: "Hi,\n\nThis is a test email from Jenkins.\n\nThanks.",
                 to: 'vipulpmalde@gmail.com',
-                subject: "Jenkins Pipeline: Test Report - ${currentBuild.fullDisplayName}",
-                mimeType: 'text/html',
-                body: """
-                    <html>
-                    <body>
-                        <h2 style="color:#2e6c80;">Jenkins Pipeline Execution Summary</h2>
-                        <p><strong>Status:</strong> ${currentBuild.currentResult}</p>
-                        <p><strong>Job:</strong> ${env.JOB_NAME}</p>
-                        <p><strong>Build Number:</strong> ${env.BUILD_NUMBER}</p>
-                        <p><strong>Build URL:</strong> <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
-                        <hr>
-                        <p>Attached is the latest test execution report (.zip).</p>
-                    </body>
-                    </html>
-                """,
-                attachmentsPattern: 'ArchivedReport.zip'
+                attachLog: true
             )
         }
     }
