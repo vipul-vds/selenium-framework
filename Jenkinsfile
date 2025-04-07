@@ -40,7 +40,7 @@ pipeline {
         stage('Archive Report') {
 		    steps {
 		        script {
-		            def reportFile = "${env.LATEST_REPORT_DIR}\\testReport.xml"
+		            def reportFile = "${env.LATEST_REPORT_DIR}\\testReport.html"
 		            echo "Archiving: ${reportFile}"
 		            if (fileExists(reportFile)) {
 		                archiveArtifacts artifacts: reportFile, fingerprint: true
