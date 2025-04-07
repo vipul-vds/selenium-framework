@@ -61,26 +61,26 @@ pipeline {
             }
         }
 
-        // Optional: Copy log file if your framework creates one in another folder
-        //stage('Copy Log File') {
-        //    steps {
-        //        script {
-        //            // Only use if you have a log file being created elsewhere
-        //            bat 'if exist logs\\log.txt copy logs\\log.txt .'
-        //        }
-        //    }
-        //}
+        Optional: Copy log file if your framework creates one in another folder
+        stage('Copy Log File') {
+            steps {
+                script {
+                    // Only use if you have a log file being created elsewhere
+                    bat 'if exist logs\\application.log copy logs\\logs.log .'
+                }
+            }
+        }
     }
 
     post {
         always {
             echo "Pipeline finished."
-
+			
             emailext(
                 subject: "Test Mail from Jenkins",
                 body: "Hi,\n\nThis is a test email from Jenkins.\n\nThanks.",
                 to: 'vipulpmalde@gmail.com',
-                attachLog: true
+                attachLog: false
             )
         }
     }
