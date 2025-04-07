@@ -61,7 +61,7 @@ pipeline {
             }
         }
 
-        Optional: Copy log file if your framework creates one in another folder
+        Optional: Copy log file your framework creates one in another folder
         stage('Copy Log File') {
             steps {
                 script {
