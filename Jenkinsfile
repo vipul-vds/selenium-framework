@@ -93,7 +93,7 @@ pipeline {
                     </body>
                     </html>
                 """,
-                attachmentsPattern: 'ArchivedReport.zip, **/log.txt'
+                attachmentsPattern: 'ArchivedReport.zip'
             )
         }
     }
