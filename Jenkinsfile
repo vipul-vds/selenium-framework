@@ -77,11 +77,13 @@ pipeline {
             echo "Pipeline finished."
 			
             emailext(
-                subject: "Test Mail from Jenkins",
-                body: "Hi,\n\nThis is a test email from Jenkins.\n\nThanks.",
-                to: 'vipulpmalde@gmail.com',
-                attachLog: false
-            )
+            subject: "Test Mail from Jenkins",
+            body: "Hi,\n\nThis is a test email from Jenkins.\n\nThanks.",
+            to: 'vipulpmalde@gmail.com',
+            replyTo: 'vipulpmalde@gmail.com',
+            recipientProviders: [[$class: 'DevelopersRecipientProvider']],
+            attachLog: false
+        )
         }
     }
 }
