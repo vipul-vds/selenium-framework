@@ -66,7 +66,7 @@ pipeline {
             steps {
                 script {
                     // Only use if you have a log file being created elsewhere
-                    bat 'if exist logs\\application.log copy logs\\logs.log .'
+                    bat 'if exist logs\\application.log copy logs\\application.log .'
                 }
             }
         }
