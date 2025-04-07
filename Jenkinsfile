@@ -81,7 +81,7 @@ pipeline {
             body: "Hi,\n\nThis is a test email from Jenkins.\n\nThanks.",
             to: 'vipulpmalde@gmail.com',
             replyTo: 'vipulpmalde@gmail.com',
-            recipientProviders: [[$class: 'DevelopersRecipientProvider']],
+            recipientProviders: [], 
             attachLog: false
         )
         }
