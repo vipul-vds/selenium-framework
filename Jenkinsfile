@@ -24,27 +24,32 @@ pipeline {
         }
 
 		stage('Find Latest Report') {
-            steps {
-                script {
-                    def latestDir = bat(
-                        script: '@echo off & for /f "delims=" %%i in (\'dir /b /ad /o-d reports\') do (echo reports\\%%i & goto :done)\n:done',
-                        returnStdout: true
-                    ).trim()
-                    echo "Latest report directory is: ${latestDir}"
-                    env.LATEST_REPORT_DIR = latestDir
-                }
-            }
-        }
+		    steps {
+		        script {
+		            def output = bat(
+		                script: '@echo off & for /f "delims=" %%i in (\'dir /b /ad /o-d reports\') do (echo %%i & goto :done)\n:done',
+		                returnStdout: true
+		            ).trim()
+		            def latestDir = "reports\\${output}"
+		            echo "Latest report directory: ${latestDir}"
+		            env.LATEST_REPORT_DIR = latestDir
+		        }
+		    }
+		}
 
         stage('Archive Report') {
-            steps {
-                script {
-                    def reportFile = "${env.LATEST_REPORT_DIR}\\testResult.xml"
-                    echo "Archiving: ${reportFile}"
-                    archiveArtifacts artifacts: reportFile, fingerprint: true
-                }
-            }
-        }
+		    steps {
+		        script {
+		            def reportFile = "${env.LATEST_REPORT_DIR}\\testReport.xml"
+		            echo "Archiving: ${reportFile}"
+		            if (fileExists(reportFile)) {
+		                archiveArtifacts artifacts: reportFile, fingerprint: true
+		            } else {
+		                error "File not found: ${reportFile}"
+		            }
+		        }
+		    }
+		}
 
         stage('Zip Report') {
             steps {
