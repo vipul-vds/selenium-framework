@@ -23,16 +23,15 @@ pipeline {
             }
         }
 
-        stage('Find Latest Report') {
+		stage('Find Latest Report') {
             steps {
                 script {
                     def latestDir = bat(
-                		script: '@echo off & for /f "delims=" %%i in (\'dir /b /ad /o-d reports\') do (echo reports\\%%i & goto :done) \n :done',
-                		returnStdout: true
-            		).trim()
-
-            		echo "Latest report directory is: ${latestDir}"
-            		env.LATEST_REPORT_DIR = latestDir
+                        script: '@echo off & for /f "delims=" %%i in (\'dir /b /ad /o-d reports\') do (echo reports\\%%i & goto :done)\n:done',
+                        returnStdout: true
+                    ).trim()
+                    echo "Latest report directory is: ${latestDir}"
+                    env.LATEST_REPORT_DIR = latestDir
                 }
             }
         }
@@ -40,33 +39,56 @@ pipeline {
         stage('Archive Report') {
             steps {
                 script {
-                    def reportFile = "${env.LATEST_REPORT_DIR}\\testReport.xml"
-            		echo "Archiving file: ${reportFile}"
-            		archiveArtifacts artifacts: reportFile, fingerprint: true
+                    def reportFile = "${env.LATEST_REPORT_DIR}\\testResult.xml"
+                    echo "Archiving: ${reportFile}"
+                    archiveArtifacts artifacts: reportFile, fingerprint: true
                 }
             }
         }
 
-//        stage('Zip Report') {
-//            steps {
-//                powershell """
-//           			Compress-Archive -Path \\"${env.LATEST_REPORT_DIR}\\" -DestinationPath \\"ArchivedReport.zip\\" -Force
-//       		"""
-//            }
-//        }
+        stage('Zip Report') {
+            steps {
+                powershell """
+                    \$source = '${env.LATEST_REPORT_DIR}'
+                    \$destination = 'ArchivedReport.zip'
+                    Compress-Archive -Path \$source -DestinationPath \$destination -Force
+                """
+            }
+        }
+
+        // Optional: Copy log file if your framework creates one in another folder
+        //stage('Copy Log File') {
+        //    steps {
+        //        script {
+        //            // Only use if you have a log file being created elsewhere
+        //            bat 'if exist logs\\log.txt copy logs\\log.txt .'
+        //        }
+        //    }
+        //}
+    }
 
     post {
         always {
-            emailext (
-                subject: "Job '${env.JOB_NAME}' - Build #${env.BUILD_NUMBER} - ${currentBuild.currentResult}",
-                body: """<p>Build Status: ${currentBuild.currentResult}</p>
-                         <p>Project: ${env.JOB_NAME}</p>
-                         <p>Build Number: ${env.BUILD_NUMBER}</p>
-                         <p>Report: <a href="${env.BUILD_URL}artifact/${env.LATEST_REPORT_DIR}index.html">Click here</a></p>""",
+            echo "Pipeline finished."
+
+            emailext(
+                to: 'vipulpmalde@gmail.com',
+                subject: "Jenkins Pipeline: Test Report - ${currentBuild.fullDisplayName}",
                 mimeType: 'text/html',
-//                attachmentsPattern: "${env.LATEST_REPORT_DIR}\\ExtentReport.zip",
-                attachmentsPattern: "${env.LATEST_REPORT_DIR}\\testReport.xml",
-                to: 'vipulpmalde@gmail.com'
+                body: """
+                    <html>
+                    <body>
+                        <h2 style="color:#2e6c80;">Jenkins Pipeline Execution Summary</h2>
+                        <p><strong>Status:</strong> ${currentBuild.currentResult}</p>
+                        <p><strong>Job:</strong> ${env.JOB_NAME}</p>
+                        <p><strong>Build Number:</strong> ${env.BUILD_NUMBER}</p>
+                        <p><strong>Build URL:</strong> <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
+                        <hr>
+                        <p>Attached is the latest test execution report (.zip).</p>
+                    </body>
+                    </html>
+                """,
+                attachmentsPattern: 'ArchivedReport.zip, **/log.txt'
             )
         }
     }
