@@ -79,10 +79,11 @@ pipeline {
             emailext(
             subject: "Test Mail from Jenkins",
             body: "Hi,\n\nThis is a test email from Jenkins.\n\nThanks.",
-            to: 'vipulpmalde@gmail.com',
+            to: 'vds.vipul@gmail.com',
             replyTo: 'vipulpmalde@gmail.com',
             recipientProviders: [], 
-            attachLog: false
+            mimeType: 'text/plain',
+            attachLog: true
         )
         }
     }
